@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    config:
+      server:
+        git :
+          uri: 
+
+---
+spring:
+  profiles: registration-first
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+  instance:
+    hostname: ${hostName}
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    preferIpAddress: true
+    metadataMap:
+      instanceId: ${spring.application.name}:${server.port}
